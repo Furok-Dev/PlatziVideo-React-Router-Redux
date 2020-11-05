@@ -5,6 +5,7 @@
 //imports necesarios
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Home from '../containers/Home';
 
 //creamos la app
 const App = () => (

@@ -21,11 +21,11 @@ const Home = () => {
       <Header />
       <Search />
       {categories.map(
-        (category) =>
+        category =>
           videos[category].length > 0 && (
             <Categories title={category}>
               <Carousel>
-                {videos[category].map((item) => (
+                {videos[category].map(item => (
                   <CarouselItem key={item.id} {...item} />
                 ))}
               </Carousel>
@@ -37,4 +37,4 @@ const Home = () => {
   );
 };
 
-export default App;
+export default Home;
