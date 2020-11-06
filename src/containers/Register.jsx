@@ -3,7 +3,8 @@
  */
 
 import React from 'react';
-
+//Importamos Link para las rutas
+import { Link } from 'react-router-dom';
 //Importamos los estilos para el register
 import '../assets/styles/components/Register.scss';
 
@@ -18,7 +19,7 @@ const Register = () => (
         <input className="input" type="password" placeholder="Contraseña" />
         <button className="button">Registrarme</button>
       </form>
-      <a href>Iniciar sesión</a>
+      <Link to="/login">Iniciar sesión</Link>
     </section>
   </section>
 );

@@ -4,6 +4,9 @@
 import React from 'react';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
+//Importamos "Link" para que la navegacion sea fluida
+import { Link } from 'react-router-dom';
+
 //Referencia a los estilos del Login con Sass
 import '../assets/styles/components/Login.scss';
 
@@ -33,7 +36,7 @@ const Login = () => (
         </div>
       </section>
       <p className="login__container--register">
-        No tienes ninguna cuenta <a href="/">Regístrate</a>
+        <Link to="/register">No tienes ninguna cuenta Regístrate</Link>
       </p>
     </section>
   </section>

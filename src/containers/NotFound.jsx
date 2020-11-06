@@ -3,7 +3,8 @@
  */
 
 import React from 'react';
-
+//Link to
+import { Link } from 'react-router-dom';
 //Import style for NotFound
 import '../assets/styles/components/NotFound.scss';
 
@@ -22,7 +23,9 @@ const NotFound = () => (
       <div className="error__title">404</div>
       <div className="error__subtitle">Hmmm...</div>
       <div className="error__description">It looks like one of the developers fell asleep</div>
-      <button className="error__button error__button--active">Home</button>
+      <button className="error__button error__button--active">
+        <Link to="/">Home</Link>
+      </button>
     </div>
     <div className="astronaut">
       <div className="astronaut__backpack" />
