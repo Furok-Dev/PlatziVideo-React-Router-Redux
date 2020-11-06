@@ -16,9 +16,9 @@ const Home = () => {
   //Añadimos el estado a la aplicacion y la API desde una funcion hook
   const [videos, categories] = useInitialState(API);
 
+  //Utilizamos fragment "<></>" para no incluir codigo innecesario
   return (
-    <div className="App">
-      <Header />
+    <>
       <Search />
       {categories.map(
         category =>
@@ -32,8 +32,7 @@ const Home = () => {
             </Categories>
           ),
       )}
-      <Footer />
-    </div>
+    </>
   );
 };
 
