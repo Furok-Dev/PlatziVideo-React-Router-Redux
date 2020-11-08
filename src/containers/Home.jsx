@@ -1,39 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/HeaderVideo';
+import React from 'react';
+//Importamos la conexion para conectarla con nuestro storage y asi hacer render de lo que necesitamos
+import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState';
 //Aqui referenciamos los estilos para que funcione
 import '../assets/styles/App.scss';
 
 //URL de la API a utilizar
-const API = 'http://localhost:3000/initalState';
+// const API = 'http://localhost:3000/initalState';
 
-const Home = () => {
+const Home = ({ myList, trends, originals }) => {
   //Añadimos el estado a la aplicacion y la API desde una funcion hook
-  const [videos, categories] = useInitialState(API);
+  // const [videos, categories] = useInitialState(API);
 
   //Utilizamos fragment "<></>" para no incluir codigo innecesario
   return (
     <>
       <Search />
-      {categories.map(
-        category =>
-          videos[category].length > 0 && (
-            <Categories title={category}>
-              <Carousel>
-                {videos[category].map(item => (
-                  <CarouselItem key={item.id} {...item} />
-                ))}
-              </Carousel>
-            </Categories>
-          ),
+      {myList.length > 0 && (
+        <Categories title="Mi Lista">
+          <Carousel>
+            {myList.map(item => (
+              <CarouselItem key={item.id} {...item} />
+            ))}
+          </Carousel>
+        </Categories>
       )}
+      <Categories title="Tendencias">
+        <Carousel>
+          {trends.map(trend => (
+            <CarouselItem key={trend.id} {...trend}></CarouselItem>
+          ))}
+        </Carousel>
+      </Categories>
+      <Categories title="Originales de Platzi Video">
+        <Carousel>
+          {originals.map(original => (
+            <CarouselItem key={original.id} {...original}></CarouselItem>
+          ))}
+        </Carousel>
+      </Categories>
     </>
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+//Creamos el conector para unir a la aplicacion con el estado que le pasamos por medio del provider
+//Exportamos un componente de forma normal
+// export default Home;
+//Enviamos el conector, y exportamos un componente conectado a nuestra app
+export default connect(mapStateToProps, null)(Home);
