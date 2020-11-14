@@ -24,22 +24,22 @@ const Home = ({ myList, trends, originals }) => {
         <Categories title="Mi Lista">
           <Carousel>
             {myList.map(item => (
-              <CarouselItem key={item.id} {...item} />
+              <CarouselItem key={item.id} {...item} isList />
             ))}
           </Carousel>
         </Categories>
       )}
       <Categories title="Tendencias">
         <Carousel>
-          {trends.map(trend => (
-            <CarouselItem key={trend.id} {...trend}></CarouselItem>
+          {trends.map(item => (
+            <CarouselItem key={item.id} {...item} />
           ))}
         </Carousel>
       </Categories>
       <Categories title="Originales de Platzi Video">
         <Carousel>
           {originals.map(original => (
-            <CarouselItem key={original.id} {...original}></CarouselItem>
+            <CarouselItem key={original.id} {...original} />
           ))}
         </Carousel>
       </Categories>

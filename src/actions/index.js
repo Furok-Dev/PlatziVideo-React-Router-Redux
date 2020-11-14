@@ -9,3 +9,14 @@ export const setFavorite = playload => ({
   type: 'SET_FAVORITE',
   playload,
 });
+
+export const deleteFavorite = playload => ({
+  type: 'DELETE_FAVORITE',
+  playload,
+});
+
+//Envia la informacion del formulario a nuestro estado
+export const loginRequest = payload => ({
+  type: 'LOGIN_REQUEST',
+  payload,
+});
