@@ -10,10 +10,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 //Traemos nuesto gravatar creado
 import gravatar from '../assets/utils/gravatar';
+//Para trabajar el logout
+import { logoutRequest } from '../actions/index';
 
 const Header = props => {
   const { user } = props;
   const hasUser = Object.keys(user).length > 0;
+
+  const handleLogout = () => {
+    props.logoutRequest({});
+  };
 
   return (
     <header className="header">
@@ -30,12 +36,24 @@ const Header = props => {
           <p>Perfil</p>
         </div>
         <ul>
-          <li>
-            <a href="/">Cuenta</a>
-          </li>
-          <li>
-            <Link to="/login">Iniciar Sesión</Link>
-          </li>
+          {hasUser ? (
+            <li>
+              <li>
+                <a href="/">{user.name}</a>
+              </li>
+            </li>
+          ) : null}
+          {hasUser ? (
+            <li>
+              <a href="#logout" onClick={handleLogout}>
+                Cerrar Sesión
+              </a>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login">Iniciar Sesión</Link>
+            </li>
+          )}
         </ul>
       </div>
     </header>
@@ -46,4 +64,9 @@ const mapStateToProps = state => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps, null)(Header);
+//Mapeamos la informacion
+const mapDispatchToProps = {
+  logoutRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

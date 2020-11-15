@@ -20,3 +20,10 @@ export const loginRequest = payload => ({
   type: 'LOGIN_REQUEST',
   payload,
 });
+
+//accion para cerrar section
+
+export const logoutRequest = payload => ({
+  type: 'LOGOUT_REQUEST',
+  payload,
+});

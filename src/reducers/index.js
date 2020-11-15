@@ -28,6 +28,8 @@ const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case 'LOGIN_REQUEST':
+      return { ...state, user: action.payload };
     default:
       return state;
   }
