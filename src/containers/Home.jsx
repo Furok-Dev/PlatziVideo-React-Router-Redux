@@ -5,21 +5,31 @@ import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import useInitialState from '../hooks/useInitialState';
+import Header from '../components/HeaderVideo';
 //Aqui referenciamos los estilos para que funcione
 import '../assets/styles/App.scss';
 
 //URL de la API a utilizar
 // const API = 'http://localhost:3000/initalState';
 
-const Home = ({ myList, trends, originals }) => {
+const Home = ({ myList, trends, originals, searchResult }) => {
   //Añadimos el estado a la aplicacion y la API desde una funcion hook
   // const [videos, categories] = useInitialState(API);
 
   //Utilizamos fragment "<></>" para no incluir codigo innecesario
   return (
     <>
-      <Search />
+      <Header></Header>
+      <Search isHome />
+      {Object.keys(searchResult).length > 0 && (
+        <Categories title="Resultados de la busqueda...">
+          <Carousel>
+            {searchResult.map(item => (
+              <CarouselItem key={item.id} {...item} />
+            ))}
+          </Carousel>
+        </Categories>
+      )}
       {myList.length > 0 && (
         <Categories title="Mi Lista">
           <Carousel>
@@ -52,6 +62,7 @@ const mapStateToProps = state => {
     myList: state.myList,
     trends: state.trends,
     originals: state.originals,
+    searchResult: state.searchResult,
   };
 };
 //Creamos el conector para unir a la aplicacion con el estado que le pasamos por medio del provider

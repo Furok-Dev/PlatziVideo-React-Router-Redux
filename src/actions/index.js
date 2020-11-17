@@ -27,3 +27,21 @@ export const logoutRequest = payload => ({
   type: 'LOGOUT_REQUEST',
   payload,
 });
+
+//Accion para los inpure del register
+export const registerRequest = payload => ({
+  type: 'REGISTER_REQUEST',
+  payload,
+});
+
+//Accion para recibir el src del video a presentar
+export const getVideoSource = payload => ({
+  type: 'GET_VIDEO_SOURCE',
+  payload,
+});
+
+//Accion para los videos
+export const getVideoSearch = payload => ({
+  type: 'GET_VIDEO_SEARCH',
+  payload,
+});

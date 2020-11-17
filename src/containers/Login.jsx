@@ -7,13 +7,13 @@
 import React, { useState } from 'react';
 //Usamos Redux para conectar esta informacion con el stado
 import { connect } from 'react-redux';
+import Header from '../components/HeaderVideo';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
 //Importamos "Link" para que la navegacion sea fluida
 import { Link } from 'react-router-dom';
 //Traemos nuestra accion que Creamos
 import { loginRequest } from '../actions';
-
 //Referencia a los estilos del Login con Sass
 import '../assets/styles/components/Login.scss';
 
@@ -40,50 +40,53 @@ const Login = props => {
     props.loginRequest(form);
     //usamos hitory para movernos a donde sea necesario
     props.history.push('/');
-    // props.console.log(form);
   };
 
   return (
-    <section className="login">
-      <section className="login__container">
-        <h2>Inicia sesión</h2>
-        <form className="login__container--form" onSubmit={handleSubmit}>
-          <input
-            name="email"
-            className="input"
-            type="text"
-            placeholder="Correo"
-            onChange={handleInput}
-          />
-          <input
-            name="password"
-            className="input"
-            type="password"
-            placeholder="Contraseña"
-            onChange={handleInput}
-          />
-          <button className="button">Iniciar sesión</button>
-          <div className="login__container--remember-me">
-            <label>
-              <input type="checkbox" id="cbox1" defaultValue="first_checkbox" />
-              Recuérdame
-            </label>
-            <a href="/">Olvidé mi contraseña</a>
-          </div>
-        </form>
-        <section className="login__container--social-media">
-          <div>
-            <img src={googleIcon} /> Inicia sesión con Google
-          </div>
-          <div>
-            <img src={twitterIcon} /> Inicia sesión con Twitter
-          </div>
+    <>
+      <Header isLogin></Header>
+      <section className="login">
+        <section className="login__container">
+          <h2>Inicia sesión</h2>
+          <form className="login__container--form" onSubmit={handleSubmit}>
+            <input
+              name="email"
+              className="input"
+              type="text"
+              placeholder="Correo"
+              onChange={handleInput}
+            />
+            <input
+              name="password"
+              className="input"
+              type="password"
+              placeholder="Contraseña"
+              onChange={handleInput}
+            />
+            <button className="button">Iniciar sesión</button>
+            <div className="login__container--remember-me">
+              <label>
+                <input type="checkbox" id="cbox1" defaultValue="first_checkbox" />
+                Recuérdame
+              </label>
+              <a href="/">Olvidé mi contraseña</a>
+            </div>
+          </form>
+          <section className="login__container--social-media">
+            <div>
+              <img src={googleIcon} /> Inicia sesión con Google
+            </div>
+            <div>
+              <img src={twitterIcon} /> Inicia sesión con Twitter
+            </div>
+          </section>
+          <p className="login__container--register">
+            ¿No tienes ninguna cuenta
+            <Link to="/register"> {''}Regístrate?</Link>
+          </p>
         </section>
-        <p className="login__container--register">
-          <Link to="/register">No tienes ninguna cuenta Regístrate</Link>
-        </p>
       </section>
-    </section>
+    </>
   );
 };
 

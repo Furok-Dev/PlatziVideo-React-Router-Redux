@@ -9,9 +9,9 @@ import React from 'react';
 //Importamos los componentes que vamos a mantener siempre presentes
 import Header from './HeaderVideo';
 import Footer from './Footer';
+
 const Layout = ({ children }) => (
   <div className="App">
-    <Header />
     {children}
     <Footer />
   </div>

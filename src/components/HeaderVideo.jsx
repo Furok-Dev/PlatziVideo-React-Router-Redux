@@ -12,17 +12,25 @@ import { connect } from 'react-redux';
 import gravatar from '../assets/utils/gravatar';
 //Para trabajar el logout
 import { logoutRequest } from '../actions/index';
+import PropTypes from 'prop-types';
+//Para hacer nuestras clases dinamicas
+import classNames from 'classnames';
 
 const Header = props => {
-  const { user } = props;
+  const { user, isLogin, isRegister } = props;
   const hasUser = Object.keys(user).length > 0;
 
   const handleLogout = () => {
     props.logoutRequest({});
   };
 
+  const headerClass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
+
   return (
-    <header className="header">
+    <header className={headerClass}>
       <Link to="/">
         <img className="header__img" src={logo} alt="Platzi Video" />
       </Link>
@@ -58,6 +66,11 @@ const Header = props => {
       </div>
     </header>
   );
+};
+
+//Validaciones
+Header.propTypes = {
+  user: PropTypes.object,
 };
 //Traemos del estado el elemento que se encarga de los usuarios
 const mapStateToProps = state => {

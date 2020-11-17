@@ -1,5 +1,6 @@
 /**
  * Este archivo es la entrada de nuestra app
+ * este es el archivo raiz, es decir el archivo principal
  */
 
 import React from 'react';
@@ -8,7 +9,7 @@ import App from './routes/App';
 //Añadimos Redux y React-Redux
 import { Provider } from 'react-redux';
 //Logica para el Store y compartirla a la app
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 //Reducer
 import reducer from './reducers/index';
 
@@ -17,6 +18,7 @@ const initialState = {
   user: {},
   playing: {},
   myList: [],
+  searchResult: [],
   trends: [
     {
       id: 2,
@@ -179,8 +181,11 @@ const initialState = {
   ],
 };
 
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
 //Referencia a nuestro Store,recibe dos paramaetros
-const store = createStore(reducer, initialState);
+const store = createStore(reducer, initialState, composeEnhancers);
 
 ReactDOM.render(
   <Provider store={store}>
